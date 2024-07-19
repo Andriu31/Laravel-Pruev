@@ -1,6 +1,4 @@
-<div>
-    {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
-    @extends('plantilla.app')
+@extends('plantilla.app')
 
 @section('css')
      <!-- DataTables -->
@@ -14,42 +12,56 @@
     <!-- left column -->
     <div class="col-md-12">
       <!-- general form elements -->
-      <div class="card card-primary">
-        <div class="card-header">
-          <h3 class="card-title">:: Ingresar Empleados ::</h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="{{url('guardarEmpleado')}}" method="post">
-          @csrf
-          <div class="card-body">
-            <div class="form-group">
-                <label >Tarea</label>
-                <select name="tarea_id" >
-                    @foreach ($tarea as $item)
-                        <option value="{{$item->id}}">{{$item->tarea}}</option>
-                    @endforeach
-                </select>
-              </div>
-            <div class="form-group">
-              <input type="text" name="nombre" class="form-control" placeholder="Nombre del empleado">
-            </div>
-            <div class="form-group">
-                <input type="text" name="apellido" class="form-control" placeholder="apellido">
-              </div>
-              <div class="form-group">
-                <input type="number" name="horas" class="form-control" placeholder="Horas de trabajo">
-              </div>
-              <div class="form-group">
-                <input type="text" name="cedula" class="form-control" placeholder="Cedula">
-              </div>
-          </div>
-          <div class="card-footer">
-            <button type="submit" class="btn btn-success">Registrar</button>
-          </div>
-        </form>
-      </div>
     </div>
+    <div class="card col-md-12">
+      <div class="card-header">
+        <h3 class="card-title">:: Lista de Empleados ::</h3>
+
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>apellido</th>
+            <th>Cedula</th>
+            <th>Horas de Trabajadas</th>
+            <th>Tareas</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+
+           @foreach ($empleados as $item)
+               <tr>
+                  <td>{{$item->id}}</td>
+                  <td>{{$item->nombre}}</td>
+                  <td>{{$item->apellido}}</td>
+                  <td>{{$item->cedula}}</td>
+                  <td>{{$item->horasTrabajadas}}</td>
+                  <td>{{$item->Acciones}}</td>
+
+                  <td>
+                    <button type="button" class="btn btn-warning">Editar</button>
+                    <button type="button" class="btn btn-info">Eliminar</button>
+                  </td>
+                </tr>
+           @endforeach
+          </tbody>
+        </table>
+        <form action="{{url('filtrar')}}" method="GET">
+          @csrf
+          <select name="datoFiltrado" id="">
+              @foreach($empleados as $item)
+                 <option value="{{$item->departamento}}">{{$item->departamento}}</option>
+              @endforeach
+          </select> 
+          <button type="submit">Filtrar</button>      
+         </form>
+  </div>
+      <!-- /.card-body -->
 
   
 @endsection
@@ -88,4 +100,3 @@
   });
 </script>
 @endsection
-</div>

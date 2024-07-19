@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Livewire;
-
+use App\Models\Empleados;
+use App\Models\Tareas; 
 use Livewire\Component;
 
 class Empleado extends Component
@@ -10,4 +11,12 @@ class Empleado extends Component
     {
         return view('livewire.empleado');
     }
+    public function index(){
+        $tarea = Tareas::all();
+        $empleado = Empleados::all();
+        return view('empleado.empleados', compact('tarea', 'empleado'));
+    }
+
+    
+   
 }

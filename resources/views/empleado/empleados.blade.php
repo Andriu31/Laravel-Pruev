@@ -1,6 +1,4 @@
-<div>
-    {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
-    @extends('plantilla.app')
+@extends('plantilla.app')
 
 @section('css')
      <!-- DataTables -->
@@ -88,4 +86,3 @@
   });
 </script>
 @endsection
-</div>

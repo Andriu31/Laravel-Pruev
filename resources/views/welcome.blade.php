@@ -258,7 +258,8 @@
 <!-- ./wrapper -->
 
 @include('plantilla.script')
-
+<livewire:mostrar-empleado />
+<livewire:empleado /> 
 <livewire:tarea /> 
 @livewireScripts
 </body>

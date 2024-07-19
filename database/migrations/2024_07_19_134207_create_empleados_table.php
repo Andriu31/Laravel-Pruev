@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->date('fechaContratacion');
-            $table->float('salario');
+            $table->string('apellido');
+            $table->string('cedula');
             $table->integer('horasTrabajadas');
-            $table->string('departamento');
             $table->foreignId('id_tarea')->constrained('tareas');
-
+            $table->timestamps();
         });
     }
 
